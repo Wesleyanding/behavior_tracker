@@ -5,11 +5,11 @@ from .models import Teacher, Class, Student, Behavior
 from django.contrib import auth
 
 def index(request):
+    return render(request, 'behav_tracker_app/index.html')
+
+def get_teachers(request):
     teachers = Teacher.objects.all()
-    context = {
-        'teachers': teachers
-    }
-    return render(request, 'behav_tracker_app/index.html', context)
+    return JsonResponse({"data": teachers})
 
 def login(request):
     if request.method == "GET":
@@ -25,3 +25,5 @@ def login(request):
         else:
             auth.login(request, user)
             return JsonResponse({"message": "ok"})
+
+    

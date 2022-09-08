@@ -5,5 +5,6 @@ app_name = 'behavtrackerapp'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('login/', views.login, name='login')
+    path('login/', views.login, name='login'),
+    path('api/teachers', views.get_teachers, name='get_teachers')
 ]
