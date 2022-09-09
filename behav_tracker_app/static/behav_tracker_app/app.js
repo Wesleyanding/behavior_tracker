@@ -2,17 +2,19 @@ const app = Vue.createApp({
     delimiters: ['[[', ']]'],
     data() {
         return {
-            teachers: []
+            teachers: [],
+            students: [],
+            selectedStudent: null,
         }
     },
     methods: {
 
         // TODO create a method to bring out the students
-        fetchTeachers: function() {
-            fetch('/teachers')
+        fetchStudents: function() {
+            fetch(`/student/${this.selectedStudent}`)
             .then(response => response.json())
             .then(data => {
-                this.teachers = data.data
+                this.students = data.data
             })
         }
 

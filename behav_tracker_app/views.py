@@ -6,13 +6,7 @@ from django.contrib import auth
 from django.core import serializers
 
 def index(request):
-    teachers = Teacher.objects.all()
-    students = Student.objects.all()
-    context = {
-        'teachers': teachers,
-        'students': students,
-    }
-    return render(request, 'behav_tracker_app/index.html', context)
+    return render(request, 'behav_tracker_app/index.html')
 
 def get_teachers(request):
     teachers_query = Teacher.objects.all()
@@ -26,6 +20,10 @@ def get_teachers(request):
         })
 
     return JsonResponse(teachers, safe=False)
+
+def get_students(request, student_id):
+    student = Student.objects.get(name=student_id)
+    return JsonResponse({'data': student})
 
 def login(request):
     if request.method == "GET":

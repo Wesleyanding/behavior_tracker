@@ -20,8 +20,17 @@
     <div id="app">
         <div v-for='teacher in teachers' v-bind:value='teacher.id'>
             <li>[[teacher.name]]</li>
-            <li>[[ teacher.students.name ]]</li>
+            {% comment %} TODO put the students in a select {% endcomment %}
+            <select v-model='selectedStudent' v-on:change='fetchStudents()'>
+                <option selected disabled >Select a student</option>
+                <option v-for='student in teacher.students'>
+                    [[student.name]]
+                </option>
+            </select>
 
+            {% comment %} <div v-for='student in teacher.students'>
+                <a href=''>[[ student.name ]]</a>
+            </div> {% endcomment %}
         </div>
     </div>
 </body>
