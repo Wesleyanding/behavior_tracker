@@ -13,9 +13,16 @@
 </head>
 <body>
     <h1>Behavior Tracker</h1>
-    <a href="login/">login</a>
+    <span>
+        <a href="login/">Login</a>
+        <a href="logout/">Logout</a>
+    </span>
     <div id="app">
-        <li v-for='teacher in teachers' v-bind:value='teacher.id'>[[teacher.name]]</li>
+        <div v-for='teacher in teachers' v-bind:value='teacher.id'>
+            <li>[[teacher.name]]</li>
+            <li>[[ teacher.students.name ]]</li>
+
+        </div>
     </div>
 </body>
 </html>

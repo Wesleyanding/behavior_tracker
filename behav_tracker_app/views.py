@@ -1,15 +1,31 @@
 import json
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from .models import Teacher, Class, Student, Behavior
 from django.contrib import auth
+from django.core import serializers
 
 def index(request):
-    return render(request, 'behav_tracker_app/index.html')
+    teachers = Teacher.objects.all()
+    students = Student.objects.all()
+    context = {
+        'teachers': teachers,
+        'students': students,
+    }
+    return render(request, 'behav_tracker_app/index.html', context)
 
 def get_teachers(request):
-    teachers = Teacher.objects.all()
-    return JsonResponse({"data": teachers})
+    teachers_query = Teacher.objects.all()
+
+    teachers = []
+    for teacher in teachers_query:
+        teachers.append({
+            'name': teacher.name,
+            'classes': list(teacher.classes.filter().values('name')),
+            'students': list(teacher.student.filter().values('name'))
+        })
+
+    return JsonResponse(teachers, safe=False)
 
 def login(request):
     if request.method == "GET":
@@ -26,4 +42,6 @@ def login(request):
             auth.login(request, user)
             return JsonResponse({"message": "ok"})
 
-    
+def logout(request):
+    auth.logout(request)
+    return redirect('behavtrackerapp:login')

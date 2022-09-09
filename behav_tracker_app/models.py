@@ -32,6 +32,7 @@ class Teacher(AbstractUser):
     student = models.ManyToManyField(Student, related_name='teacher', blank=True)
     admin = models.BooleanField(default=False)
 
-
+    def __str__(self):
+        return self.name
 
     
