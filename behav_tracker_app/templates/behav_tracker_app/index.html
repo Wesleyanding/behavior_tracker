@@ -9,7 +9,35 @@
     <title>Behavior Tracker</title>
     <script src="https://unpkg.com/vue@3"></script>
     <script defer src="{% static 'behav_tracker_app/app.js' %}"></script>
+    {% comment %} I will move the style {% endcomment %}
+    <style>
+        {box-sizing: border-box}
 
+        .form-popup {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            right: 15px;
+            border: 3px solid #f1f1f1;
+            z-index: 9;
+        }
+        .form-container {
+            max-width: 300px;
+            padding: 10px;
+            background-color: white;
+        }
+        .form-container input[type=text] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            border: none;
+            background: #f1f1f1
+        }
+        .form-container input[type=text]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+    </style>
 </head>
 <body>
     <h1>Behavior Tracker</h1>
@@ -20,17 +48,33 @@
     <div id="app">
         <div v-for='teacher in teachers' v-bind:value='teacher.id'>
             <li>[[teacher.name]]</li>
-            {% comment %} TODO put the students in a select {% endcomment %}
             <select v-model='selectedStudent' v-on:change='fetchStudents()'>
                 <option selected disabled >Select a student</option>
                 <option v-for='student in teacher.students'>
                     [[student.name]]
                 </option>
             </select>
+            <div class='form-popup' id='myForm'>
+                <form action="" class='form-container'>
+                    {% comment %} <h1>[[student.name]]</h1> {% endcomment %}
 
-            {% comment %} <div v-for='student in teacher.students'>
-                <a href=''>[[ student.name ]]</a>
-            </div> {% endcomment %}
+                    <label for="antecedent"><b>Antecedent</b></label>
+                    <input type="text" placeholder='Enter Antecedent' name='antecedent'>
+
+                    <label for="behavior"><b>Behavior</b></label>
+                    <input type="text" placeholder='Enter Behavior' name="behavior">
+
+                    <label for="intervention"><b>Intervention</b></label>
+                    <input type="text" placeholder='Enter Intervention' name='intervention'>
+
+                    <label for="location"><b>Location</b></label>
+                    <input type="text" placeholder='Enter Location' name='location'>
+
+                    <button type='submit' class='btn'>Submit</button>
+                    <button type='button' class='btn cancel'onclick='closeForm()'>close</button>
+                    
+                </form>
+            </div> 
         </div>
     </div>
 </body>

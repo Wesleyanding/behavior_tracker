@@ -5,18 +5,19 @@ const app = Vue.createApp({
             teachers: [],
             students: [],
             selectedStudent: null,
+            currentStudent: []
         }
     },
     methods: {
-
-        // TODO create a method to bring out the students
         fetchStudents: function() {
             fetch(`/student/${this.selectedStudent}`)
             .then(response => response.json())
             .then(data => {
                 this.students = data.data
+                console.log(data)
             })
-        }
+        },
+        // TODO create a function for 
 
     },
 

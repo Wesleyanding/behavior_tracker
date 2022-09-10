@@ -21,9 +21,10 @@ def get_teachers(request):
 
     return JsonResponse(teachers, safe=False)
 
-def get_students(request, student_id):
+def get_student(request, student_id):
     student = Student.objects.get(name=student_id)
-    return JsonResponse({'data': student})
+    behaviors = list(student.behavior.filter().values('antecedent', 'behavior', 'created_date', 'location', 'intervention'))
+    return JsonResponse({'data': behaviors})
 
 def login(request):
     if request.method == "GET":
