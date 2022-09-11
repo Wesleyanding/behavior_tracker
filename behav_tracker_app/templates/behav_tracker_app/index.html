@@ -40,10 +40,14 @@
     </style>
 </head>
 <body>
-    <h1>Behavior Tracker</h1>
     <span>
-        <a href="login/">Login</a>
-        <a href="logout/">Logout</a>
+        <h1>
+            <a href="{% url 'behavtrackerapp:index' %}">Behavior Tracker</a>
+        </h1>
+        <div>
+            <button onclick='location.href="login/";'>Login</button>
+            <button onclick='location.href="logout/";'>Logout</button>
+        </div>
     </span>
     <div id="app">
         <div v-for='teacher in teachers' v-bind:value='teacher.id'>
@@ -54,22 +58,23 @@
                     [[student.name]]
                 </option>
             </select>
+            {% comment %} I need to find out how to open the popup onSelect {% endcomment %}
             <div class='form-popup' id='myForm'>
-                <form action="" class='form-container'>
+                <form action="" class='form-container' method='POST'>
                     {% comment %} <h1>[[student.name]]</h1> {% endcomment %}
-
+                    
                     <label for="antecedent"><b>Antecedent</b></label>
                     <input type="text" placeholder='Enter Antecedent' name='antecedent'>
-
+                    
                     <label for="behavior"><b>Behavior</b></label>
                     <input type="text" placeholder='Enter Behavior' name="behavior">
-
+                    
                     <label for="intervention"><b>Intervention</b></label>
                     <input type="text" placeholder='Enter Intervention' name='intervention'>
-
+                    
                     <label for="location"><b>Location</b></label>
                     <input type="text" placeholder='Enter Location' name='location'>
-
+                    
                     <button type='submit' class='btn'>Submit</button>
                     <button type='button' class='btn cancel'onclick='closeForm()'>close</button>
                     
@@ -77,5 +82,7 @@
             </div> 
         </div>
     </div>
+    <br>
+    <button onclick='location.href="viewStudents/";'>View Students</button>
 </body>
 </html>
