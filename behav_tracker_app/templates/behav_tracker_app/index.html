@@ -49,6 +49,7 @@
             <button onclick='location.href="logout/";'>Logout</button>
         </div>
     </span>
+    {% comment %} TODO only show logined teachers students {% endcomment %}
     <div id="app">
         <div v-for='teacher in teachers' v-bind:value='teacher.id'>
             <li>[[teacher.name]]</li>
