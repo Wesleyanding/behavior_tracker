@@ -14,10 +14,14 @@ const app = Vue.createApp({
             .then(response => response.json())
             .then(data => {
                 this.students = data.data
+                this.openForm()
                 console.log(data)
             })
         },
-        // TODO create a function for form
+        openForm: function() {
+            document.getElementById('myForm').style.display = 'block'
+        }
+        // TODO create a function for student info
 
     },
 

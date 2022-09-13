@@ -6,6 +6,7 @@ import behav_tracker_app
 from .models import Teacher, Class, Student, Behavior
 from django.contrib import auth
 from django.core import serializers
+from .forms import NewBehavForm
 
 from .forms import NewBehavForm
 from .models import Behavior
@@ -31,23 +32,24 @@ def get_student(request, student_id):
     behaviors = list(student.behavior.filter().values('antecedent', 'behavior', 'created_date', 'location', 'intervention'))
     return JsonResponse({'data': behaviors})
 
-def create_behavior(request): # I need some help with this. 
+def create_behavior(request): # I need some help with this. It's not saving in my student
     if request.method == 'POST':
-        form = NewBehavForm(request.POST)
-        if form.is_valid():
-            newBehav = Behavior()
-            newBehav.antecedent = form.cleaned_data['antecedent']
-            newBehav.behavior = form.cleaned_data['behavior']
-            newBehav.intervention = form.cleaned_data['intervention']
-            newBehav.location = form.cleaned_data['location']
-            newBehav.user = request.user # I'm not sure this is correct
+        form = request.POST
+        newBehav = Behavior()
+        newBehav.antecedent = form.get('antecedent')
+        newBehav.behavior = form.get('behavior')
+        newBehav.intervention = form.get('intervention')
+        newBehav.location = form.get('location')
+        newBehav.user = request.user # I'm not sure this is correct
 
-            newBehav.save()
+        newBehav.save()
 
     return redirect('behavtrackerapp:index')
 
 #TODO add page to view student information
-def view_students(request):
+def view_students(request, student_id):
+    student = Student.objects.get(name=student_id)
+    behaviors = list(student.behavior.filter().values('antecedent', 'behavior', 'created_date', 'location', 'intervention'))
     return render(request, 'behav_tracker_app/viewstudents.html')
 
 

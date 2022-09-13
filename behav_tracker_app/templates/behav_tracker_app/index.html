@@ -60,8 +60,11 @@
                 </option>
             </select>
             {% comment %} I need to find out how to open the popup onSelect {% endcomment %}
+            
             <div class='form-popup' id='myForm'>
-                <form action="" class='form-container' method='POST'>
+
+                <form action="newBehav/" class='form-container' method='POST'>
+                    {% csrf_token %}
                     {% comment %} <h1>[[student.name]]</h1> {% endcomment %}
                     
                     <label for="antecedent"><b>Antecedent</b></label>

@@ -21,7 +21,7 @@
     {% comment %} TODO list of students {% endcomment %}
     <select v-model='selectedStudent' v-on:change='fetchStudents()'>
         <option selected disabled >Select a student</option>
-        <option v-for='student in teacher.students'>
+        <option v-for='student in students'>
             [[student.name]]
         </option>
     </select>
