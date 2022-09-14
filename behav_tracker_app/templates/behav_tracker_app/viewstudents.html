@@ -19,11 +19,15 @@
         </div>
     </span>
     {% comment %} TODO list of students {% endcomment %}
-    <select v-model='selectedStudent' v-on:change='fetchStudents()'>
-        <option selected disabled >Select a student</option>
-        <option v-for='student in students'>
-            [[student.name]]
-        </option>
-    </select>
+    <div id='app'>
+        <div v-for='student in students' v-bind:value='student.id'>
+            <select v-model='selectedStudent' v-on:change='fetchStudents()'>
+                <option selected disabled >Select a student</option>
+                <option>
+                    [[student.name]]
+                </option>
+            </select>
+        </div>
+    </div>
 </body>
 </html>

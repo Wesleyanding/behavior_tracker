@@ -9,7 +9,6 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('teachers/', views.get_teachers, name='get_teachers'),
     path('student/<str:student_id>/', views.get_student, name='get_student'),
-    path('newBehav/', views.create_behavior, name='newBehav'), # I need to check this as well.
     path('viewStudents/', views.view_students, name='viewStudents'),
     
 ]

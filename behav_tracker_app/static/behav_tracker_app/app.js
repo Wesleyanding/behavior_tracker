@@ -20,7 +20,7 @@ const app = Vue.createApp({
         },
         openForm: function() {
             document.getElementById('myForm').style.display = 'block'
-        }
+        },
         // TODO create a function for student info
 
     },
