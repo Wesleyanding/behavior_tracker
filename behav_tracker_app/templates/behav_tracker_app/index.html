@@ -63,7 +63,7 @@
             
             <div class='form-popup' id='myForm'>
 
-                <form action="behavtrackerapp:get_student" class='form-container' method='POST'>
+                <form v-bind:action="'save_behav/'+ selectedStudent" class='form-container' method='POST'>
                     {% csrf_token %}
                     {% comment %} <h1>[[student.name]]</h1> {% endcomment %}
                     

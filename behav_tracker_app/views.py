@@ -1,4 +1,5 @@
 import json
+from turtle import ht
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 
@@ -30,6 +31,12 @@ def get_teachers(request):
 def get_student(request, student_id):
     student = Student.objects.get(name=student_id)
     behaviors = list(student.behavior.filter().values('antecedent', 'behavior', 'created_date', 'location', 'intervention'))
+    
+    return JsonResponse({'data': behaviors})
+
+def save_behav(request, student_id):
+    student = Student.objects.get(name=student_id)
+
     if request.method == 'POST':
         form = request.POST
         newBehav = Behavior()
@@ -38,10 +45,10 @@ def get_student(request, student_id):
         newBehav.intervention = form.get('intervention')
         newBehav.location = form.get('location')
         newBehav.save()
-        student.append(newBehav)
-    
-    return JsonResponse({'data': behaviors})
+        student.behavior.add(newBehav)
+        student.save()
 
+    return redirect('behavtrackerapp:index')
 
 #TODO add page to view student information
 def view_students(request):

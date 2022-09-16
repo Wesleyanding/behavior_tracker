@@ -21,6 +21,11 @@ const app = Vue.createApp({
         openForm: function() {
             document.getElementById('myForm').style.display = 'block'
         },
+        viewStudents: function () {
+            fetch(``)
+        }
+
+
         // TODO create a function for student info
 
     },
