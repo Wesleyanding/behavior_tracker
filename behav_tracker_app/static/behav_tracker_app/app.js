@@ -15,19 +15,22 @@ const app = Vue.createApp({
             .then(data => {
                 this.students = data.data
                 this.openForm()
-                console.log(data)
             })
         },
         openForm: function() {
             document.getElementById('myForm').style.display = 'block'
         },
         viewStudents: function () {
-            fetch(``)
+            fetch('/viewStudents')
+            .then(response => response.json())
+            .then(data => {
+                this.students = data
+            })
+        },
+        // finish student info
+        studentInfo: function () {
+            fetch('/')
         }
-
-
-        // TODO create a function for student info
-
     },
 
     created: function() {
@@ -40,6 +43,6 @@ const app = Vue.createApp({
         })
     }, 
     mounted: function () {
-
+        this.viewStudents()
     }
 }).mount('#app')

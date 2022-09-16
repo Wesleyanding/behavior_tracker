@@ -1,5 +1,4 @@
 import json
-from turtle import ht
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 
@@ -14,6 +13,9 @@ from .models import Behavior
 
 def index(request):
     return render(request, 'behav_tracker_app/index.html')
+
+def students(request):
+    return render(request, 'behav_tracker_app/viewstudents.html')
 
 def get_teachers(request):
     teachers_query = Teacher.objects.all()
@@ -50,12 +52,22 @@ def save_behav(request, student_id):
 
     return redirect('behavtrackerapp:index')
 
-#TODO add page to view student information
 def view_students(request):
-    student = Student.objects.all
-    # behaviors = list(student.behavior.filter().values('antecedent', 'behavior', 'created_date', 'location', 'intervention'))
-    return render(request, 'behav_tracker_app/viewstudents.html')
+    student_query = Student.objects.all()
 
+    students = []
+    for student in student_query:
+        students.append({
+           'name': student.name
+        })
+
+    return JsonResponse(students, safe=False)
+
+def student_info(request, student_id):
+    student = Student.objects.get(name=student_id)
+    behaviors = list(student.behavior.filter().values('antecedent', 'behavior', 'created_date', 'location', 'intervention'))
+    
+    return JsonResponse({'data': behaviors})
 
 def login(request):
     if request.method == "GET":

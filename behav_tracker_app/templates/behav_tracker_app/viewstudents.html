@@ -20,15 +20,10 @@
             <button onclick='location.href="logout/";'>Logout</button>
         </div>
     </span>
-    {% comment %} TODO list of students {% endcomment %}
+    {% comment %} link to studentinfo page {% endcomment %}
     <div id='app'>
         <div v-for='student in students' v-bind:value='student.id'>
-            <select v-model='selectedStudent' v-on:change='fetchStudents()'>
-                <option selected disabled >Select a student</option>
-                <option>
-                    [[student.name]]
-                </option>
-            </select>
+           <a href="">[[student.name]]</a>
         </div>
     </div>
 </body>
