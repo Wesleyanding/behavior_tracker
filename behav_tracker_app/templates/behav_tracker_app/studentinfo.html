@@ -16,10 +16,15 @@
             <a href="{% url 'behavtrackerapp:index' %}">Behavior Tracker</a>
         </h1>
         <div>
-            <button onclick='location.href="login/";'>Login</button>
-            <button onclick='location.href="logout/";'>Logout</button>
+            <a href="{% url 'behavtrackerapp:login' %}">Login</a>
+            <a href="{% url 'behavtrackerapp:logout' %}">Logout</a>
         </div>
     </span>
-    {% comment %} TODO list of student behaviors {% endcomment %}
+    {% comment %} link to student id {% endcomment %}
+    <div id="app">
+        <div v-for='behavior in behaviors' v-bind:value='behavior.id'>
+            <li>[[behavior.antecedent]]</li>
+        </div>
+    </div>
 </body>
 </html>

@@ -5,7 +5,8 @@ const app = Vue.createApp({
             teachers: [],
             students: [],
             selectedStudent: null,
-            currentStudent: []
+            currentStudent: [],
+            behaviors: [],
         }
     },
     methods: {
@@ -29,7 +30,12 @@ const app = Vue.createApp({
         },
         // finish student info
         studentInfo: function () {
-            fetch('/')
+            fetch(`/studentinfo/${this.selectedStudent}`)
+            .then(response => response.json())
+            .then(data => {
+                this.behaviors = data.data
+                console.log(data)
+            })
         }
     },
 
@@ -40,7 +46,8 @@ const app = Vue.createApp({
             // data is not showing data in console so it should be like below
             this.teachers = data
             // console.log(data)
-        })
+        }),
+        this.studentInfo()
     }, 
     mounted: function () {
         this.viewStudents()

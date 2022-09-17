@@ -17,6 +17,9 @@ def index(request):
 def students(request):
     return render(request, 'behav_tracker_app/viewstudents.html')
 
+def student_behaviors(request, student_id):
+    return render(request, 'behav_tracker_app/studentinfo.html')
+
 def get_teachers(request):
     teachers_query = Teacher.objects.all()
 
@@ -63,11 +66,11 @@ def view_students(request):
 
     return JsonResponse(students, safe=False)
 
-def student_info(request, student_id):
+def get_behaviors(request, student_id):
     student = Student.objects.get(name=student_id)
     behaviors = list(student.behavior.filter().values('antecedent', 'behavior', 'created_date', 'location', 'intervention'))
     
-    return JsonResponse({'data': behaviors})
+    return JsonResponse(behaviors, safe=False)
 
 def login(request):
     if request.method == "GET":
