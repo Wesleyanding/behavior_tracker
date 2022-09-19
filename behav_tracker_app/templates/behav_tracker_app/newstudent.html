@@ -7,8 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Behavior Tracker</title>
-    <script src="https://unpkg.com/vue@3"></script>
-    <script defer src="{% static 'behav_tracker_app/app.js' %}"></script>
 </head>
 <body>
     <span>
@@ -21,10 +19,21 @@
             <a href="{% url 'behavtrackerapp:viewstudents' %}" >View Students</a>
         </div>
     </span>
+    <h3>Add new student</h3>
     <div id='app'>
-        <div v-for='student in students' v-bind:value='student.id'>
-           <a v-bind:href="'../student_behaviors/'+ student.name" v-model='selectedStudent'>[[student.name]]</a>
-        </div>
+        <form action="{% url 'behavtrackerapp:newstudent' %}" method='POST'>
+            {% csrf_token %}
+            <input type="text" name='name' placeholder='name'>
+            <input type="text" name='grade' placeholder='grade'>
+            {% comment %} need help {% endcomment %}
+            <select v-model='created'>
+                <option selected disabled >Select a Teacher</option>
+                <option v-for='teacher in teachers' v-bind:value='teacher.id'>
+                    [[teacher.name]]
+                </option>
+            </select>
+            <button>Create Student</button>
+        </form>
     </div>
 </body>
 </html>

@@ -14,5 +14,7 @@ urlpatterns = [
     path('save_behav/<str:student_id>', views.save_behav, name="save_behav"),
     path('studentinfo/<str:student_id>', views.get_behaviors, name="student_info"),
     path('student_behaviors/<str:student_id>', views.student_behaviors, name='behaviors'),
+    path('signup/', views.signup, name='signup'),
+    path('newstudent/', views.new_student, name='newstudent'),
     
 ]

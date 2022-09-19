@@ -20,6 +20,27 @@ def students(request):
 def student_behaviors(request, student_id):
     return render(request, 'behav_tracker_app/studentinfo.html')
 
+def signup(request):
+    if request.method == 'POST':
+        Teacher.objects.create_user(
+            username=request.POST['username'],
+            password=request.POST['password'],
+            name=request.POST['name']
+        )
+        return redirect('behavtrackerapp:login')
+    return render(request, 'behav_tracker_app/newteacher.html')
+
+def new_student(request):
+    if request.method == 'POST':
+        form = request.POST
+        newStudent = Student()
+        newStudent.name = form.get('name')
+        newStudent.grade = form.get('grade')
+        newStudent.save()
+    
+        return redirect('behavtrackerapp:index')
+    return render(request, 'behav_tracker_app/newstudent.html')
+
 def get_teachers(request):
     teachers_query = Teacher.objects.all()
 
