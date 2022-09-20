@@ -30,7 +30,8 @@ const app = Vue.createApp({
         },
         // finish student info
         studentInfo: function () {
-            fetch(`/studentinfo/${this.selectedStudent}`)
+            student_id = document.querySelector('#student_id').value
+            fetch(`/studentinfo/${student_id}`)
             .then(response => response.json())
             .then(data => {
                 this.behaviors = data.data
@@ -45,7 +46,7 @@ const app = Vue.createApp({
         .then(data => {
             // data is not showing data in console so it should be like below
             this.teachers = data
-            // console.log(data)
+            console.log(data)
         }),
         this.studentInfo()
     }, 

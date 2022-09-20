@@ -18,7 +18,8 @@ def students(request):
     return render(request, 'behav_tracker_app/viewstudents.html')
 
 def student_behaviors(request, student_id):
-    return render(request, 'behav_tracker_app/studentinfo.html')
+    context = {'student_id': student_id}
+    return render(request, 'behav_tracker_app/studentinfo.html', context)
 
 def signup(request):
     if request.method == 'POST':
@@ -37,7 +38,11 @@ def new_student(request):
         newStudent.name = form.get('name')
         newStudent.grade = form.get('grade')
         newStudent.save()
-    
+        teacher_id = form.get('selectedTeacher')
+        teacher = Teacher.objects.get(name=teacher_id)
+        print(teacher)
+        teacher.student.add(newStudent)
+
         return redirect('behavtrackerapp:index')
     return render(request, 'behav_tracker_app/newstudent.html')
 

@@ -23,6 +23,8 @@
         </div>
     </span>
     {% comment %} link to student id {% endcomment %}
+
+    <input type="hidden" value='{{student_id}}' id='student_id'>
     <div id="app">
         <div v-for='behavior in behaviors' v-bind:value='behavior.id'>
             <li>[[behavior.antecedent]]</li>
