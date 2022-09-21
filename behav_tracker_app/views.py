@@ -1,15 +1,9 @@
 import json
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
-
-import behav_tracker_app
 from .models import Teacher, Class, Student, Behavior
 from django.contrib import auth
 from django.core import serializers
-from .forms import NewBehavForm
-
-from .forms import NewBehavForm
-from .models import Behavior
 
 def index(request):
     return render(request, 'behav_tracker_app/index.html')

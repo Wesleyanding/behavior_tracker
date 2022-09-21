@@ -22,15 +22,25 @@
             <a href="{% url 'behavtrackerapp:viewstudents' %}" >View Students</a>
         </div>
     </span>
-    {% comment %} link to student id {% endcomment %}
-
     <input type="hidden" value='{{student_id}}' id='student_id'>
     <div id="app">
-        <div v-for='behavior in behaviors'>
-            <li>[[behavior.antecedent]]</li>
-        </div>
         <div>
-            <table :behaviors='behaviors'></table>
+            <table>
+                <tr>
+                    <th>Antecedent</th>
+                    <th>Behavior</th>
+                    <th>created date</th>
+                    <th>Location</th>
+                    <th>Intervention</th>
+                </tr>
+                <tr v-for='behavior in behaviors'>
+                    <td>[[behavior.antecedent]]</td>
+                    <td>[[behavior.behavior]]</td>
+                    <td>[[behavior.created_date]]</td>
+                    <td>[[behavior.location]]</td>
+                    <td>[[behavior.intervention]]</td>
+                </tr>
+            </table>
         </div>
     </div>
 </body>
