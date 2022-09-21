@@ -54,19 +54,19 @@ def get_teachers(request):
         teachers.append({
             'name': teacher.name,
             'classes': list(teacher.classes.filter().values('name')),
-            'students': list(teacher.student.filter().values('name'))
+            'students': list(teacher.student.filter().values('name', 'id'))
         })
 
     return JsonResponse(teachers, safe=False)
 
 def get_student(request, student_id):
-    student = Student.objects.get(name=student_id)
+    student = Student.objects.get(id=student_id)
     behaviors = list(student.behavior.filter().values('antecedent', 'behavior', 'created_date', 'location', 'intervention'))
     
     return JsonResponse({'data': behaviors})
 
 def save_behav(request, student_id):
-    student = Student.objects.get(name=student_id)
+    student = Student.objects.get(id=student_id)
 
     if request.method == 'POST':
         form = request.POST

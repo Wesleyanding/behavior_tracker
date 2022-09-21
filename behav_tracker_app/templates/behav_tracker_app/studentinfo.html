@@ -26,8 +26,11 @@
 
     <input type="hidden" value='{{student_id}}' id='student_id'>
     <div id="app">
-        <div v-for='behavior in behaviors' v-bind:value='behavior.id'>
+        <div v-for='behavior in behaviors'>
             <li>[[behavior.antecedent]]</li>
+        </div>
+        <div>
+            <table :behaviors='behaviors'></table>
         </div>
     </div>
 </body>

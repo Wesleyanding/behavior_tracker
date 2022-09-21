@@ -23,7 +23,7 @@
     </span>
     <div id='app'>
         <div v-for='student in students' v-bind:value='student.id'>
-           <a v-bind:href="'../student_behaviors/'+ student.name" v-model='selectedStudent'>[[student.name]]</a>
+           <a v-bind:href="'../student_behaviors/'+ student.name">[[student.name]]</a>
         </div>
     </div>
 </body>

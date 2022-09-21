@@ -58,7 +58,7 @@
             <li>[[teacher.name]]</li>
             <select v-model='selectedStudent' v-on:change='fetchStudents()'>
                 <option selected disabled >Select a student</option>
-                <option v-for='student in teacher.students'>
+                <option v-for='student in teacher.students' v-bind:value='student.id'>
                     [[student.name]]
                 </option>
             </select>
@@ -83,7 +83,7 @@
                     <input type="text" placeholder='Enter Location' name='location'>
                     
                     <button type='submit' class='btn'>Submit</button>
-                    <button type='button' class='btn cancel'onclick='closeForm()'>close</button>
+                    <button type='button' class='btn cancel' v-on:click='closeForm()'>Close</button>
                     
                 </form>
             </div> 

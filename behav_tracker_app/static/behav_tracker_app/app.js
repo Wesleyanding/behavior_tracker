@@ -21,6 +21,9 @@ const app = Vue.createApp({
         openForm: function() {
             document.getElementById('myForm').style.display = 'block'
         },
+        closeForm: function() {
+            document.getElementById('myForm').style.display = 'none'
+        },
         viewStudents: function () {
             fetch('/viewStudents')
             .then(response => response.json())
@@ -30,13 +33,13 @@ const app = Vue.createApp({
         },
         // finish student info
         studentInfo: function () {
-            student_id = document.querySelector('#student_id').value
-            fetch(`/studentinfo/${student_id}`)
-            .then(response => response.json())
-            .then(data => {
-                this.behaviors = data.data
-                console.log(data)
-            })
+            if(document.querySelector('#student_id')){
+                student_id = document.querySelector('#student_id').value
+                fetch(`/studentinfo/${student_id}`)
+                .then(response => response.json())
+                .then(data => {
+                    this.behaviors = data
+                })}
         }
     },
 
@@ -46,11 +49,10 @@ const app = Vue.createApp({
         .then(data => {
             // data is not showing data in console so it should be like below
             this.teachers = data
-            console.log(data)
-        }),
-        this.studentInfo()
+        })
     }, 
     mounted: function () {
-        this.viewStudents()
+        this.viewStudents(),
+        this.studentInfo()
     }
 }).mount('#app')
