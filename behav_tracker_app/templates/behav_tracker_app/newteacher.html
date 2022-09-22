@@ -5,18 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Behavior Tracker</title>
+    {% include 'behav_tracker_app/_styles.html' %}
+
 </head>
 <body>
-    <span>
-        <h1>
-            <a href="{% url 'behavtrackerapp:index' %}">Behavior Tracker</a>
-        </h1>
-        <div>
-            <a href="{% url 'behavtrackerapp:login' %}">Login</a>
-            <a href="{% url 'behavtrackerapp:logout' %}">Logout</a>
-            <a href="{% url 'behavtrackerapp:viewstudents' %}" >View Students</a>
-        </div>
-    </span>
+    {% include 'behav_tracker_app/_navbar.html' %}
+
     <h3>Add a Teacher</h3>
     <form action="{% url 'behavtrackerapp:signup' %}" method="POST">
         {% csrf_token %}

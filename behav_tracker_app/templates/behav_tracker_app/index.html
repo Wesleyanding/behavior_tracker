@@ -9,7 +9,8 @@
     <title>Behavior Tracker</title>
     <script src="https://unpkg.com/vue@3"></script>
     <script defer src="{% static 'behav_tracker_app/app.js' %}"></script>
-    {% comment %} I will move the style {% endcomment %}
+    
+    {% include 'behav_tracker_app/_styles.html' %}
     <style>
         {box-sizing: border-box}
 
@@ -40,27 +41,18 @@
     </style>
 </head>
 <body>
-    <span>
-        <h1>
-            <a href="{% url 'behavtrackerapp:index' %}">Behavior Tracker</a>
-        </h1>
-        <div>
-            <a href="{% url 'behavtrackerapp:login' %}">Login</a>
-            <a href="{% url 'behavtrackerapp:logout' %}">Logout</a>
-            <a href="{% url 'behavtrackerapp:signup' %}">Signup</a>
-            <a href="{% url 'behavtrackerapp:newstudent' %}">Add a Student</a>
-            <a href="{% url 'behavtrackerapp:viewstudents' %}" >View Students</a>
-        </div>
-    </span>
+    {% include 'behav_tracker_app/_navbar.html' %}
     <div id="app">
         <div v-for='teacher in teachers' v-bind:value='teacher.id'>
             <li>[[teacher.name]]</li>
-            <select v-model='selectedStudent' v-on:change='fetchStudents()'>
-                <option selected disabled >Select a student</option>
-                <option v-for='student in teacher.students' v-bind:value='student.id'>
-                    [[student.name]]
-                </option>
-            </select>            
+            <div class='input-field col s12'>
+                <select v-model='selectedStudent' v-on:change='fetchStudents()'>
+                    <option selected disabled >Select a student</option>
+                    <option v-for='student in teacher.students' v-bind:value='student.id'>
+                        [[student.name]]
+                    </option>
+                </select>    
+            </div>
             <div class='form-popup' id='myForm'>
 
                 <form v-bind:action="'save_behav/'+ selectedStudent" class='form-container' method='POST'>

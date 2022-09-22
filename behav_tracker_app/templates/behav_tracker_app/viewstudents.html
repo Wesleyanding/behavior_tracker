@@ -9,18 +9,12 @@
     <title>Behavior Tracker</title>
     <script src="https://unpkg.com/vue@3"></script>
     <script defer src="{% static 'behav_tracker_app/app.js' %}"></script>
+    {% include 'behav_tracker_app/_styles.html' %}
+
 </head>
 <body>
-    <span>
-        <h1>
-            <a href="{% url 'behavtrackerapp:index' %}">Behavior Tracker</a>
-        </h1>
-        <div>
-            <a href="{% url 'behavtrackerapp:login' %}">Login</a>
-            <a href="{% url 'behavtrackerapp:logout' %}">Logout</a>
-            <a href="{% url 'behavtrackerapp:viewstudents' %}" >View Students</a>
-        </div>
-    </span>
+    {% include 'behav_tracker_app/_navbar.html' %}
+
     <div id='app'>
         <div v-for='student in students' v-bind:value='student.id'>
            <a v-bind:href="'../student_behaviors/'+ student.name">[[student.name]]</a>
