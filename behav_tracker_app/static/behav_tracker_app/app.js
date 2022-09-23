@@ -50,6 +50,9 @@ const app = Vue.createApp({
             // data is not showing data in console so it should be like below
             this.teachers = data
         })
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems, {dropdownOptions:{}});
+          
     }, 
     mounted: function () {
         this.viewStudents(),

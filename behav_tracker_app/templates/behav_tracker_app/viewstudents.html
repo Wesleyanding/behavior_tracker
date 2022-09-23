@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Behavior Tracker</title>
     <script src="https://unpkg.com/vue@3"></script>
-    <script defer src="{% static 'behav_tracker_app/app.js' %}"></script>
     {% include 'behav_tracker_app/_styles.html' %}
+    <script defer src="{% static 'behav_tracker_app/app.js' %}"></script>
 
 </head>
 <body>
@@ -20,5 +20,7 @@
            <a v-bind:href="'../student_behaviors/'+ student.name">[[student.name]]</a>
         </div>
     </div>
+    {% include 'behav_tracker_app/_footer.html' %}
+
 </body>
 </html>

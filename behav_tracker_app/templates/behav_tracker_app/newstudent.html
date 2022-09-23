@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Behavior Tracker</title>
     <script src="https://unpkg.com/vue@3"></script>
-    <script defer src="{% static 'behav_tracker_app/app.js' %}"></script>
     {% include 'behav_tracker_app/_styles.html' %}
+    <script defer src="{% static 'behav_tracker_app/app.js' %}"></script>
 
 </head>
 <body>
@@ -21,14 +21,18 @@
             {% csrf_token %}
             <input type="text" name='name' placeholder='name'>
             <input type="text" name='grade' placeholder='grade'>
-            <select v-model='created' name='selectedTeacher'>
-                <option selected disabled >Select a Teacher</option>
-                <option v-for='teacher in teachers' v-bind:value='teacher.id'>
-                    [[teacher.name]]
-                </option>
-            </select>
+            <div class='input-field'>
+                <select v-model='created' name='selectedTeacher' class='browser-default'>
+                    <option selected disabled >Select a Teacher</option>
+                    <option v-for='teacher in teachers' v-bind:value='teacher.id'>
+                        [[teacher.name]]
+                    </option>
+                </select>
+            </div>
             <button>Create Student</button>
         </form>
     </div>
+    {% include 'behav_tracker_app/_footer.html' %}
+
 </body>
 </html>

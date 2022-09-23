@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Behavior Tracker</title>
     <script src="https://unpkg.com/vue@3"></script>
+    {% include 'behav_tracker_app/_styles.html' %}
     <script defer src="{% static 'behav_tracker_app/app.js' %}"></script>
     
-    {% include 'behav_tracker_app/_styles.html' %}
     <style>
         {box-sizing: border-box}
 
@@ -42,42 +42,47 @@
 </head>
 <body>
     {% include 'behav_tracker_app/_navbar.html' %}
-    <div id="app">
-        <div v-for='teacher in teachers' v-bind:value='teacher.id'>
-            <li>[[teacher.name]]</li>
-            <div class='input-field col s12'>
-                <select v-model='selectedStudent' v-on:change='fetchStudents()'>
-                    <option selected disabled >Select a student</option>
-                    <option v-for='student in teacher.students' v-bind:value='student.id'>
-                        [[student.name]]
-                    </option>
-                </select>    
+    
+    <div id="app" class='section no-pad-bot'>
+        <div class='container'>
+            <h4 class='header center blue-text'>Select a student to add a behavior</h4>
+            <div v-for='teacher in teachers' v-bind:value='teacher.id'>
+                <h5 class='header col s12 light'>[[teacher.name]]</h5>
+                <div class='input-field col s6'>
+                    <select v-model='selectedStudent' v-on:change='fetchStudents()' class="browser-default">
+                        <option selected disabled >Select a student</option>
+                        <option v-for='student in teacher.students' v-bind:value='student.id'>
+                            [[student.name]]
+                        </option>
+                    </select>    
+                </div>
+                <div class='form-popup' id='myForm'>
+    
+                    <form v-bind:action="'save_behav/'+ selectedStudent" class='form-container' method='POST'>
+                        {% csrf_token %}
+                        {% comment %} <h1>[[student.name]]</h1> {% endcomment %}
+                        
+                        <label for="antecedent"><b>Antecedent</b></label>
+                        <input type="text" placeholder='Enter Antecedent' name='antecedent'>
+                        
+                        <label for="behavior"><b>Behavior</b></label>
+                        <input type="text" placeholder='Enter Behavior' name="behavior">
+                        
+                        <label for="intervention"><b>Intervention</b></label>
+                        <input type="text" placeholder='Enter Intervention' name='intervention'>
+                        
+                        <label for="location"><b>Location</b></label>
+                        <input type="text" placeholder='Enter Location' name='location'>
+                        
+                        <button type='submit' class='btn'>Submit</button>
+                        <button type='button' class='btn cancel' v-on:click='closeForm()'>Close</button>
+                        
+                    </form>
+                </div> 
             </div>
-            <div class='form-popup' id='myForm'>
-
-                <form v-bind:action="'save_behav/'+ selectedStudent" class='form-container' method='POST'>
-                    {% csrf_token %}
-                    {% comment %} <h1>[[student.name]]</h1> {% endcomment %}
-                    
-                    <label for="antecedent"><b>Antecedent</b></label>
-                    <input type="text" placeholder='Enter Antecedent' name='antecedent'>
-                    
-                    <label for="behavior"><b>Behavior</b></label>
-                    <input type="text" placeholder='Enter Behavior' name="behavior">
-                    
-                    <label for="intervention"><b>Intervention</b></label>
-                    <input type="text" placeholder='Enter Intervention' name='intervention'>
-                    
-                    <label for="location"><b>Location</b></label>
-                    <input type="text" placeholder='Enter Location' name='location'>
-                    
-                    <button type='submit' class='btn'>Submit</button>
-                    <button type='button' class='btn cancel' v-on:click='closeForm()'>Close</button>
-                    
-                </form>
-            </div> 
         </div>
     </div>
     <br>
+    {% include 'behav_tracker_app/_footer.html' %}
 </body>
 </html>
