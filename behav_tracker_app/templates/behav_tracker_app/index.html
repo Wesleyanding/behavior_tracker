@@ -37,6 +37,7 @@
         .form-container input[type=text]:focus {
             background-color: #ddd;
             outline: none;
+            width: 100%;
         }
     </style>
 </head>
@@ -56,26 +57,32 @@
                         </option>
                     </select>    
                 </div>
-                <div class='form-popup' id='myForm'>
+                <div class='divider'></div>
+
+                <div class='form-popup' id='myForm' class='container'>
     
                     <form v-bind:action="'save_behav/'+ selectedStudent" class='form-container' method='POST'>
                         {% csrf_token %}
-                        {% comment %} <h1>[[student.name]]</h1> {% endcomment %}
                         
-                        <label for="antecedent"><b>Antecedent</b></label>
-                        <input type="text" placeholder='Enter Antecedent' name='antecedent'>
+                        <div class='input-field col s6'>
+                            <label for="antecedent"><b>Antecedent</b></label>
+                            <input type="text" placeholder='Enter Antecedent' name='antecedent'>
+                        </div>
+                        <div class='input-field col s6'>
+                            <label for="behavior"><b>Behavior</b></label>
+                            <input type="text" placeholder='Enter Behavior' name="behavior"> 
+                        </div>
+                        <div class='input-field col s6'>
+                            <label for="intervention"><b>Intervention</b></label>
+                            <input type="text" placeholder='Enter Intervention' name='intervention'>
+                        </div>
+                        <div class='input-field col s6'>
+                            <label for="location"><b>Location</b></label>
+                            <input type="text" placeholder='Enter Location' name='location'>
+                        </div>
                         
-                        <label for="behavior"><b>Behavior</b></label>
-                        <input type="text" placeholder='Enter Behavior' name="behavior">
-                        
-                        <label for="intervention"><b>Intervention</b></label>
-                        <input type="text" placeholder='Enter Intervention' name='intervention'>
-                        
-                        <label for="location"><b>Location</b></label>
-                        <input type="text" placeholder='Enter Location' name='location'>
-                        
-                        <button type='submit' class='btn'>Submit</button>
-                        <button type='button' class='btn cancel' v-on:click='closeForm()'>Close</button>
+                        <button type='submit' class='btn-small'>Submit</button>
+                        <button type='button' class='btn-small cancel' v-on:click='closeForm()'>Close</button>
                         
                     </form>
                 </div> 
