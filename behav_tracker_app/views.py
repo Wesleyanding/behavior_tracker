@@ -41,8 +41,8 @@ def new_student(request):
     return render(request, 'behav_tracker_app/newstudent.html')
 
 def get_teachers(request):
-    teachers_query = Teacher.objects.all()
-
+    teachers_query = Teacher.objects.filter(username=request.user.username)
+    print(teachers_query)
     teachers = []
     for teacher in teachers_query:
         teachers.append({
@@ -76,8 +76,9 @@ def save_behav(request, student_id):
     return redirect('behavtrackerapp:index')
 
 def view_students(request):
-    student_query = Student.objects.all()
-
+    teacher = Teacher.objects.get(username=request.user.username)
+    student_query = teacher.student.all()
+    
     students = []
     for student in student_query:
         students.append({

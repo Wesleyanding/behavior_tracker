@@ -14,23 +14,25 @@
 </head>
 <body>
     {% include 'behav_tracker_app/_navbar.html' %}
+    <div class='row'>
 
-    <h3>Add new student</h3>
-    <div id='app'>
-        <form action="{% url 'behavtrackerapp:newstudent' %}" method='POST'>
-            {% csrf_token %}
-            <input type="text" name='name' placeholder='name'>
-            <input type="text" name='grade' placeholder='grade'>
-            <div class='input-field'>
-                <select v-model='created' name='selectedTeacher' class='browser-default'>
-                    <option selected disabled >Select a Teacher</option>
-                    <option v-for='teacher in teachers' v-bind:value='teacher.id'>
-                        [[teacher.name]]
-                    </option>
-                </select>
-            </div>
-            <button>Create Student</button>
-        </form>
+        <h3 class='center blue-grey-text lighten-1-text'>Add new student</h3>
+        <div id='app'>
+            <form action="{% url 'behavtrackerapp:newstudent' %}" method='POST' class='col s8 offset-s2'>
+                {% csrf_token %}
+                <input type="text" name='name' placeholder='name'>
+                <input type="text" name='grade' placeholder='grade'>
+                <div class='input-field'>
+                    <select v-model='created' name='selectedTeacher' class='browser-default'>
+                        <option selected disabled >Select a Teacher</option>
+                        <option v-for='teacher in teachers' v-bind:value='teacher.id'>
+                            [[teacher.name]]
+                        </option>
+                    </select>
+                </div>
+                <button class='btn blue-grey lighten-1'>Create Student</button>
+            </form>
+        </div>
     </div>
     {% include 'behav_tracker_app/_footer.html' %}
 

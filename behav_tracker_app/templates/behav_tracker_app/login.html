@@ -13,13 +13,17 @@
 
 </head>
 <body>
-  <h1>Login</h1>
-  <form id="login-form">
-    <input id="username" type="text" placeholder="Username:" required>
-    <input id="password" type="password" placeholder="Password:" required>
-    <button>Login</button>
-  </form>
-  {% include 'behav_tracker_app/_footer.html' %}
+  {% include 'behav_tracker_app/_navbar.html' %}
+
+  <div class='row'>
+    <h1 class='center blue-grey-text lighten-1-text'>Login</h1>
+    <form id="login-form" class='col s8 offset-s2'>
+      <input id="username" type="text" placeholder="Username:" required>
+      <input id="password" type="password" placeholder="Password:" required>
+      <button class='btn blue-grey lighten-1'>Login</button>
+    </form>
+  </div>
+  
 
 </body>
 </html>

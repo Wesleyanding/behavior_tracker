@@ -10,15 +10,16 @@
 </head>
 <body>
     {% include 'behav_tracker_app/_navbar.html' %}
-
-    <h3>Add a Teacher</h3>
-    <form action="{% url 'behavtrackerapp:signup' %}" method="POST">
-        {% csrf_token %}
-        <input type="text" name='username' placeholder='Username'>
-        <input type="password" name='password' placeholder='Password'>
-        <input type="text" name='name' placeholder="Teacher's name">
-        <button>Sign up</button>
-    </form>
+    <div class='row'>
+        <h3 class='center blue-grey-text lighten-1-text'>Add a Teacher</h3>
+        <form action="{% url 'behavtrackerapp:signup' %}" method="POST" class='col s4 offset-s4'>
+            {% csrf_token %}
+            <input type="text" name='username' placeholder='Username'>
+            <input type="password" name='password' placeholder='Password'>
+            <input type="text" name='name' placeholder="Teacher's name">
+            <button class='btn blue-grey lighten-1'>Sign up</button>
+        </form>
+    </div>
     {% include 'behav_tracker_app/_footer.html' %}
 
 </body>

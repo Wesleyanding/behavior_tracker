@@ -15,28 +15,29 @@
 </head>
 <body>
     {% include 'behav_tracker_app/_navbar.html' %}
-
-    <input type="hidden" value='{{student_id}}' id='student_id'>
-    <div id="app" class='section no-pad-bot'>
-        <div class='container'>
-            <table class='highlight responsive-table'>
-                <tr>
-                    <th>Antecedent</th>
-                    <th>Behavior</th>
-                    <th>Created Date</th>
-                    <th>Location</th>
-                    <th>Intervention</th>
-                </tr>
-                <tr v-for='behavior in behaviors'>
-                    <td>[[behavior.antecedent]]</td>
-                    <td>[[behavior.behavior]]</td>
-                    <td>[[behavior.created_date]]</td>
-                    <td>[[behavior.location]]</td>
-                    <td>[[behavior.intervention]]</td>
-                </tr>
-            </table>
+    <main>
+        <input type="hidden" value='{{student_id}}' id='student_id'>
+        <div id="app" class='section no-pad-bot'>
+            <div class='container'>
+                <table class='highlight responsive-table blue-grey-text lighten-1-text'>
+                    <tr>
+                        <th>Antecedent</th>
+                        <th>Behavior</th>
+                        <th>Created Date</th>
+                        <th>Location</th>
+                        <th>Intervention</th>
+                    </tr>
+                    <tr v-for='behavior in behaviors'>
+                        <td>[[behavior.antecedent]]</td>
+                        <td>[[behavior.behavior]]</td>
+                        <td>[[behavior.created_date]]</td>
+                        <td>[[behavior.location]]</td>
+                        <td>[[behavior.intervention]]</td>
+                    </tr>
+                </table>
+            </div>
         </div>
-    </div>
+    </main>
     {% include 'behav_tracker_app/_footer.html' %}
 
 </body>
