@@ -15,7 +15,6 @@
 <body>
     {% include 'behav_tracker_app/_navbar.html' %}
     <div class='row'>
-
         <h3 class='center blue-grey-text lighten-1-text'>Add new student</h3>
         <div id='app'>
             <form action="{% url 'behavtrackerapp:newstudent' %}" method='POST' class='col s8 offset-s2'>
@@ -35,6 +34,5 @@
         </div>
     </div>
     {% include 'behav_tracker_app/_footer.html' %}
-
 </body>
 </html>

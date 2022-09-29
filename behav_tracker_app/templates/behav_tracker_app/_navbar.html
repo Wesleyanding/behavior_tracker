@@ -1,6 +1,5 @@
 {% load static %}
 <header>
-
     <nav class="blue-grey lighten-1" role="navigation">
         <div class="nav-wrapper container">
             <a id="logo-container" href="{% url 'behavtrackerapp:index' %}" class="brand-logo">
@@ -16,7 +15,6 @@
                 <li><a href="{% url 'behavtrackerapp:signup' %}">Sign up</a></li>
                 {% endif %}
             </ul>
-    
             <ul id="nav-mobile" class="sidenav">
                 {% if not request.user.is_anonymous %}
                 <li><a href="{% url 'behavtrackerapp:logout' %}">Logout</a></li>
